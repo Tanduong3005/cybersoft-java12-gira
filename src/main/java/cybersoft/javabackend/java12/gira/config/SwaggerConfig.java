@@ -17,17 +17,12 @@ public class SwaggerConfig {
 	@Bean
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2).select()
-				.apis(RequestHandlerSelectors.basePackage("cybersoft.javabackend.java12.gira"))
-				.build()
+				.apis(RequestHandlerSelectors.basePackage("cybersoft.javabackend.java12.gira")).build()
 				.apiInfo(apiInfo());
 	}
-	
+
 	private ApiInfo apiInfo() {
-		return new ApiInfoBuilder()
-				.title("Gira Application")
-				.description("This project use education purpose only")
-				.contact(new Contact("Duong Nhat Tan", "tanduong.net", "contact@TanDuong.dev"))
-				.license("MIT2")
-				.build();
+		return new ApiInfoBuilder().title("Gira Application").description("This project use education purpose only")
+				.contact(new Contact("Duong Nhat Tan", "tanduong.net", "contact@TanDuong.dev")).license("MIT2").build();
 	}
 }
