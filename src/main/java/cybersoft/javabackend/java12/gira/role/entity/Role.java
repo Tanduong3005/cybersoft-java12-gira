@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -23,16 +24,40 @@ public class Role extends BaseEntity {
 	@Size(min = 3, max = 50)
 	@Column(unique = true)
 	private String name;
-	
 	private String description;
 
 	@ManyToMany(mappedBy = "roles")
 	private Set<Group> groups = new HashSet<>();
 
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)
 	@JoinTable(name = "gira_role_program", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "program_id"))
 	private Set<Program> programs = new HashSet<>();
 
+	/*
+	 * Các lưu ý khi thiết lập một quan hệ ManyToMany
+	 * 1. Xác định chủ của quan hệ
+	 * 2. Dùng Set, không sử dụng List
+	 * 3. Tránh sử dụng CascadeType All và REMOVE 
+	 * 4. Fetching lazy cả hai chiều của quan hệ
+	 * 5. Thiết lập Join Table
+	 * 6. Giữ sự liên kết giữa các quan hệ đồng bộ
+	 * */
+	
+	/*hekper method
+	 * 
+	 * */
+	public void addProgram(Program program) {
+		this.programs.add(program);
+		program.getRoles().add(this);
+		
+	}
+	
+	public void removeProgram(Program program) {
+		this.programs.remove(program);
+		program.getRoles().remove(this);
+		
+	}
+	
 	// getter and setter
 	public String getName() {
 		return name;

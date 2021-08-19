@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cybersoft.javabackend.java12.gira.common.util.ResponseHandler;
 import cybersoft.javabackend.java12.gira.role.dto.CreateGroupDto;
+import cybersoft.javabackend.java12.gira.role.dto.GroupDto;
 import cybersoft.javabackend.java12.gira.role.entity.Group;
 import cybersoft.javabackend.java12.gira.role.service.itf.GroupService;
 
@@ -29,7 +30,7 @@ public class GroupController {
 	
 	@GetMapping
 	public Object findAllGroup() {
-		List<Group> groups = service.findAll();
+		List<GroupDto> groups = service.findAll();
 		
 		return ResponseHandler.getResponse(groups, HttpStatus.OK);
 //		return new ResponseEntity<>(roles, HttpStatus.OK);
@@ -38,7 +39,8 @@ public class GroupController {
 	@PostMapping
 	public Object saveGroup(@Valid @RequestBody CreateGroupDto dto, BindingResult errors) {
 		if(errors.hasErrors())
-			return new ResponseEntity<>(errors.getAllErrors(), HttpStatus.BAD_REQUEST);
+			return ResponseHandler.getResponse(HttpStatus.BAD_REQUEST);
+//			return new ResponseEntity<>(errors.getAllErrors(), HttpStatus.BAD_REQUEST);
 
 		Group addedGroup = service.addNewGroup(dto);
 

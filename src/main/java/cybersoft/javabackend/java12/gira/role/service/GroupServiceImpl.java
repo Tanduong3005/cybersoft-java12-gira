@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import cybersoft.javabackend.java12.gira.role.dto.CreateGroupDto;
+import cybersoft.javabackend.java12.gira.role.dto.GroupDto;
 import cybersoft.javabackend.java12.gira.role.entity.Group;
 import cybersoft.javabackend.java12.gira.role.repository.GroupRepository;
 import cybersoft.javabackend.java12.gira.role.service.itf.GroupService;
@@ -18,8 +19,8 @@ public class GroupServiceImpl implements GroupService{
 	}
 
 	@Override
-	public List<Group> findAll() {
-		return repository.findAll();
+	public List<GroupDto> findAll() {
+		return repository.findAllDto();
 	}
 
 	@Override
