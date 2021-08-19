@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,7 +41,7 @@ public class RoleController {
 	@PostMapping
 	public Object saveRole(@Valid @RequestBody CreateRoleDto dto, BindingResult errors) {
 		if(errors.hasErrors())
-			return ResponseHandler.getResponse(HttpStatus.BAD_REQUEST);
+			return ResponseHandler.getResponse(errors, HttpStatus.BAD_REQUEST);
 //			return new ResponseEntity<>(errors.getAllErrors(), HttpStatus.BAD_REQUEST);
 
 		Role addedRole = service.addNewRole(dto);
@@ -57,4 +58,7 @@ public class RoleController {
 
 		return ResponseHandler.getResponse(updatedRole, HttpStatus.CREATED);
 	}
+	
+	@PutMapping
+	public 
 }

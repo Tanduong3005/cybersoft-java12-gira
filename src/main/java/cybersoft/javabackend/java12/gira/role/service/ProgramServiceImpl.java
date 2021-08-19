@@ -33,4 +33,9 @@ public class ProgramServiceImpl implements ProgramService{
 
 		return repository.save(newProgram);
 	}
+
+	@Override
+	public boolean isExistedId(Long programId) {
+		return repository.existsById(programId);
+	}
 }

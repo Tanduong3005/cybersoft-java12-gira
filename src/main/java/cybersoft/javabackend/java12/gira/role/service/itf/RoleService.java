@@ -15,4 +15,8 @@ public interface RoleService {
 	Role addNewRole(CreateRoleDto dto);
 	
 	Role addProgram(AddProgramDto dto);
+
+	boolean isTakenName(String roleName);
+
+	boolean isExistedId(Long roleId);
 }

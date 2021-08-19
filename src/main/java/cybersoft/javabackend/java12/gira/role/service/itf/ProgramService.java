@@ -12,4 +12,6 @@ public interface ProgramService {
 	List<ProgramDto> findAll();
 
 	Program addNewProgram(CreateProgramDto dto);
+
+	boolean isExistedId(Long programId);
 }
