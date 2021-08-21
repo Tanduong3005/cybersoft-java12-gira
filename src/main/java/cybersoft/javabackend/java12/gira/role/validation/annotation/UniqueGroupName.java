@@ -9,13 +9,13 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-import cybersoft.javabackend.java12.gira.role.validation.validator.UnipueRoleNameValidator;
+import cybersoft.javabackend.java12.gira.role.validation.validator.UniqueGroupNameValidator;
 
-@Constraint(validatedBy = UnipueRoleNameValidator.class)
+@Constraint(validatedBy = UniqueGroupNameValidator.class)
 @Retention(RUNTIME)
 @Target(FIELD)
-public @interface UnipueRoleName {
-	public String message() default "Role name has been used";
+public @interface UniqueGroupName {
+	public String message() default "Group name has been used";
 	
 	Class<?>[] groups() default { };
 

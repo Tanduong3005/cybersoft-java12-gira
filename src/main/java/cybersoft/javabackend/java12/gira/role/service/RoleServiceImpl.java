@@ -2,11 +2,14 @@ package cybersoft.javabackend.java12.gira.role.service;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Service;
 
 import cybersoft.javabackend.java12.gira.role.dto.AddProgramDto;
 import cybersoft.javabackend.java12.gira.role.dto.CreateRoleDto;
 import cybersoft.javabackend.java12.gira.role.dto.RoleDto;
+import cybersoft.javabackend.java12.gira.role.entity.Group;
 import cybersoft.javabackend.java12.gira.role.entity.Program;
 import cybersoft.javabackend.java12.gira.role.entity.Role;
 import cybersoft.javabackend.java12.gira.role.repository.ProgramRepository;
@@ -33,7 +36,7 @@ public class RoleServiceImpl implements RoleService{
 	public Role addNewRole(CreateRoleDto dto) {
 		Role newRole = new Role();
 		
-		newRole.setName(dto.getName());
+		newRole.setName(dto.getName().toUpperCase());
 		newRole.setDescription(dto.getDescription());
 		
 		
@@ -53,11 +56,22 @@ public class RoleServiceImpl implements RoleService{
 
 	@Override
 	public boolean isTakenName(String roleName) {
-		return repository.countByName(roleName) >=1;
+		return repository.countByName(roleName.toUpperCase()) >=1;
 	}
 
 	@Override
 	public boolean isExistedId(Long roleId) {
 		return repository.existsById(roleId);
 	}
+	
+	@Override
+	public Role removeProgram(@Valid AddProgramDto dto) {
+		Role role = repository.getById(dto.getRoleId()); 
+		Program program = programRepository.getById(dto.getProgramId());
+		
+		role.removeProgram(program);
+		
+		return repository.save(role);
+	}
+	
 }

@@ -4,19 +4,19 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 import cybersoft.javabackend.java12.gira.role.service.itf.RoleService;
-import cybersoft.javabackend.java12.gira.role.validation.annotation.UnipueRoleName;
+import cybersoft.javabackend.java12.gira.role.validation.annotation.UniqueRoleName;
 
-public class UnipueRoleNameValidator implements ConstraintValidator<UnipueRoleName, String>{
+public class UniqueRoleNameValidator implements ConstraintValidator<UniqueRoleName, String>{
 	
 	private String message;
 	private RoleService service;
 	
-	public UnipueRoleNameValidator(RoleService roleService) {
+	public UniqueRoleNameValidator(RoleService roleService) {
 		service = roleService;
 	}
 	
 	@Override
-	public void initialize(UnipueRoleName constraintAnnotation) {
+	public void initialize(UniqueRoleName constraintAnnotation) {
 		this.message = constraintAnnotation.message();
 	}
 	

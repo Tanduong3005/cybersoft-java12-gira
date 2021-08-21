@@ -9,13 +9,13 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-import cybersoft.javabackend.java12.gira.role.validation.validator.ExitsProgramIdValidator;
+import cybersoft.javabackend.java12.gira.role.validation.validator.UniqueRoleNameValidator;
 
-@Constraint(validatedBy = ExitsProgramIdValidator.class)
+@Constraint(validatedBy = UniqueRoleNameValidator.class)
 @Retention(RUNTIME)
 @Target(FIELD)
-public @interface ExitsProgramId {
-	public String message() default "Program doesn't exits";
+public @interface UniqueRoleName {
+	public String message() default "Role name has been used";
 	
 	Class<?>[] groups() default { };
 

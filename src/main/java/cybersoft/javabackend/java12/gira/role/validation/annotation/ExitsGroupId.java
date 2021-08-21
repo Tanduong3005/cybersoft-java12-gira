@@ -9,13 +9,13 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-import cybersoft.javabackend.java12.gira.role.validation.validator.ExitsProgramIdValidator;
+import cybersoft.javabackend.java12.gira.role.validation.validator.ExitsGroupIdValidator;
 
-@Constraint(validatedBy = ExitsProgramIdValidator.class)
+@Constraint(validatedBy = ExitsGroupIdValidator.class)
 @Retention(RUNTIME)
 @Target(FIELD)
-public @interface ExitsProgramId {
-	public String message() default "Program doesn't exits";
+public @interface ExitsGroupId {
+	public String message() default "Role doesn't exits";
 	
 	Class<?>[] groups() default { };
 

@@ -15,13 +15,13 @@ import cybersoft.javabackend.java12.gira.role.validation.validator.ValidDescript
 @Retention(RUNTIME)
 @Target(FIELD)
 public @interface ValidDescription {
-	public String message() default "Role description is not valid";
-	
+	public String message() default "Role Description is not valid";
+
 //	int min() default 10;
 //
 //	int max() default 100;
-	
-	Class<?>[] groups() default { };
 
-	Class<? extends Payload>[] payload() default { };
+	Class<?>[] groups() default {};
+
+	Class<? extends Payload>[] payload() default {};
 }

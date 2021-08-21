@@ -9,15 +9,15 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-import cybersoft.javabackend.java12.gira.role.validation.validator.ExitsProgramIdValidator;
+import cybersoft.javabackend.java12.gira.role.validation.validator.ValidGroupDescriptionValidator;
 
-@Constraint(validatedBy = ExitsProgramIdValidator.class)
+@Constraint(validatedBy = ValidGroupDescriptionValidator.class)
 @Retention(RUNTIME)
 @Target(FIELD)
-public @interface ExitsProgramId {
-	public String message() default "Program doesn't exits";
-	
-	Class<?>[] groups() default { };
+public @interface ValidGroupDescription {
+	public String message() default "Group Description is not valid";
 
-	Class<? extends Payload>[] payload() default { };
+	Class<?>[] groups() default {};
+
+	Class<? extends Payload>[] payload() default {};
 }

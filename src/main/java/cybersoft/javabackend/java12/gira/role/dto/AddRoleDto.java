@@ -4,21 +4,28 @@ import javax.validation.constraints.Min;
 
 import com.sun.istack.NotNull;
 
-import cybersoft.javabackend.java12.gira.role.validation.annotation.ExitsProgramId;
+import cybersoft.javabackend.java12.gira.role.validation.annotation.ExitsGroupId;
 import cybersoft.javabackend.java12.gira.role.validation.annotation.ExitsRoleId;
 
+public class AddRoleDto {
 
-public class AddProgramDto {
+	@NotNull
+	@Min(value = 1)
+	@ExitsGroupId
+	private Long groupId;
 
 	@NotNull
 	@Min(value = 1)
 	@ExitsRoleId
 	private Long roleId;
 
-	@NotNull
-	@Min(value = 1)
-	@ExitsProgramId
-	private Long programId;
+	public Long getGroupId() {
+		return groupId;
+	}
+
+	public void setGroupId(Long groupId) {
+		this.groupId = groupId;
+	}
 
 	public Long getRoleId() {
 		return roleId;
@@ -26,14 +33,6 @@ public class AddProgramDto {
 
 	public void setRoleId(Long roleId) {
 		this.roleId = roleId;
-	}
-
-	public Long getProgramId() {
-		return programId;
-	}
-
-	public void setProgramId(Long programId) {
-		this.programId = programId;
 	}
 
 }

@@ -18,6 +18,7 @@ import cybersoft.javabackend.java12.gira.common.util.ResponseHandler;
 import cybersoft.javabackend.java12.gira.role.dto.AddProgramDto;
 import cybersoft.javabackend.java12.gira.role.dto.CreateRoleDto;
 import cybersoft.javabackend.java12.gira.role.dto.RoleDto;
+import cybersoft.javabackend.java12.gira.role.dto.UpdateRoleDto;
 import cybersoft.javabackend.java12.gira.role.entity.Role;
 import cybersoft.javabackend.java12.gira.role.service.itf.RoleService;
 
@@ -52,13 +53,29 @@ public class RoleController {
 	@PostMapping("/add-program")
 	public Object addProgram(@Valid @RequestBody AddProgramDto dto, BindingResult errors) {
 		if(errors.hasErrors())
-			return ResponseHandler.getResponse(HttpStatus.BAD_REQUEST); 
+			return ResponseHandler.getResponse(errors, HttpStatus.BAD_REQUEST); 
 		
 		Role updatedRole = service.addProgram(dto);
 
-		return ResponseHandler.getResponse(updatedRole, HttpStatus.CREATED);
+		return ResponseHandler.getResponse(updatedRole, HttpStatus.OK);
+	}
+	
+	
+	@PostMapping("/remove-program")
+	public Object removeProgram(@Valid @RequestBody AddProgramDto dto,
+			BindingResult errors) {
+		if(errors.hasErrors())
+			return ResponseHandler.getResponse(errors, HttpStatus.BAD_REQUEST);
+		
+		Role updatedRole = service.removeProgram(dto);
+		
+		return ResponseHandler.getResponse(updatedRole, HttpStatus.OK);
 	}
 	
 	@PutMapping
-	public 
+	public Object updateRole(@Valid @RequestBody UpdateRoleDto dto,
+			BindingResult errors) {
+		
+		return null;
+	}
 }

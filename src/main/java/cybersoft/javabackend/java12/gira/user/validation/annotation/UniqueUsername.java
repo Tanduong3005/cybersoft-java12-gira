@@ -1,4 +1,4 @@
-package cybersoft.javabackend.java12.gira.role.validation.annotation;
+package cybersoft.javabackend.java12.gira.user.validation.annotation;
 
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
@@ -9,13 +9,13 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-import cybersoft.javabackend.java12.gira.role.validation.validator.ExitsProgramIdValidator;
+import cybersoft.javabackend.java12.gira.user.validation.validator.UniqueUsernameValidator;
 
-@Constraint(validatedBy = ExitsProgramIdValidator.class)
+@Constraint(validatedBy = UniqueUsernameValidator.class)
 @Retention(RUNTIME)
 @Target(FIELD)
-public @interface ExitsProgramId {
-	public String message() default "Program doesn't exits";
+public @interface UniqueUsername {
+	public String message() default "Username has been used";
 	
 	Class<?>[] groups() default { };
 

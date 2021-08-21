@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import cybersoft.javabackend.java12.gira.common.entity.BaseEntity;
 
 @Entity
@@ -24,12 +26,14 @@ public class Role extends BaseEntity {
 	@Size(min = 3, max = 50)
 	@Column(unique = true)
 	private String name;
+	
 	private String description;
 
-	@ManyToMany(mappedBy = "roles")
+	@ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+	@JsonIgnore
 	private Set<Group> groups = new HashSet<>();
 
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "gira_role_program", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "program_id"))
 	private Set<Program> programs = new HashSet<>();
 
