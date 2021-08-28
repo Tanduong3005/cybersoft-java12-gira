@@ -19,7 +19,7 @@ import cybersoft.javabackend.java12.gira.role.entity.Program;
 import cybersoft.javabackend.java12.gira.role.service.itf.ProgramService;
 
 @RestController
-@RequestMapping("/api/program")
+@RequestMapping("api/program")
 public class ProgramController {
 	private ProgramService service;
 	

@@ -19,7 +19,7 @@ import cybersoft.javabackend.java12.gira.user.entity.User;
 import cybersoft.javabackend.java12.gira.user.service.itf.UserService;
 
 @RestController // tat ca tra ve json
-@RequestMapping("user")
+@RequestMapping("/api/user")
 public class UserController {
 	private UserService service;
 	
