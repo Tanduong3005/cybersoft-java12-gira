@@ -17,7 +17,19 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import cybersoft.javabackend.java12.gira.common.entity.BaseEntity;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString(exclude = {"groups", "programs"})
+@EqualsAndHashCode(exclude = {"groups", "programs"}, callSuper = false)
 @Entity
 @Table(name = "gira_role")
 public class Role extends BaseEntity {
@@ -29,10 +41,13 @@ public class Role extends BaseEntity {
 	
 	private String description;
 
+	@Builder.Default
 	@ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
 	@JsonIgnore
 	private Set<Group> groups = new HashSet<>();
 
+	@Builder.Default
+	@JsonIgnore
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "gira_role_program", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "program_id"))
 	private Set<Program> programs = new HashSet<>();
@@ -63,36 +78,6 @@ public class Role extends BaseEntity {
 	}
 	
 	// getter and setter
-	public String getName() {
-		return name;
-	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public Set<Group> getGroups() {
-		return groups;
-	}
-
-	public void setGroups(Set<Group> groups) {
-		this.groups = groups;
-	}
-
-	public Set<Program> getPrograms() {
-		return programs;
-	}
-
-	public void setPrograms(Set<Program> programs) {
-		this.programs = programs;
-	}
 
 }

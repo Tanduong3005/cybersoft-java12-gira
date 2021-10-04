@@ -5,14 +5,12 @@ import javax.validation.constraints.Min;
 import com.sun.istack.NotNull;
 
 import cybersoft.javabackend.java12.gira.role.validation.annotation.ExitsGroupId;
-import cybersoft.javabackend.java12.gira.role.validation.annotation.ExitsRoleId;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class AddRoleDto {
-
+public class AddUserDto {
 	@NotNull
 	@Min(value = 1)
 	@ExitsGroupId
@@ -20,7 +18,7 @@ public class AddRoleDto {
 
 	@NotNull
 	@Min(value = 1)
-	@ExitsRoleId
-	private Long roleId;
+//	@ExitsUserId
+	private Long userId;
 
 }

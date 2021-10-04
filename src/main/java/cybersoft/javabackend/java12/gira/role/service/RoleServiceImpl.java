@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import cybersoft.javabackend.java12.gira.role.dto.AddProgramDto;
 import cybersoft.javabackend.java12.gira.role.dto.CreateRoleDto;
@@ -18,6 +19,7 @@ import cybersoft.javabackend.java12.gira.role.service.itf.RoleService;
 
 //concrete
 @Service
+@Transactional
 public class RoleServiceImpl implements RoleService{
 	private RoleRepository repository;
 	private ProgramRepository programRepository;
@@ -74,4 +76,8 @@ public class RoleServiceImpl implements RoleService{
 		return repository.save(role);
 	}
 	
+	@Override
+	public void deleteById(Long roleId) {
+		repository.deleteById(roleId);;
+	}
 }

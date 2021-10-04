@@ -6,7 +6,11 @@ import javax.validation.constraints.Size;
 import com.sun.istack.NotNull;
 
 import cybersoft.javabackend.java12.gira.role.util.HttpMethods;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class CreateProgramDto {
 
 	@NotBlank(message = "{program.name.not-blank}")
@@ -18,29 +22,5 @@ public class CreateProgramDto {
 
 	@NotBlank
 	private String path;
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public HttpMethods getMethod() {
-		return method;
-	}
-
-	public void setMethod(HttpMethods method) {
-		this.method = method;
-	}
-
-	public String getPath() {
-		return path;
-	}
-
-	public void setPath(String path) {
-		this.path = path;
-	}
 
 }

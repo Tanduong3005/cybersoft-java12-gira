@@ -23,4 +23,6 @@ public interface RoleService {
 	boolean isExistedId(Long roleId);
 	
 	Role removeProgram(@Valid AddProgramDto dto);
+
+	void deleteById(Long roleId);
 }

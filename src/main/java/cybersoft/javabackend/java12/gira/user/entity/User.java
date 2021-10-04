@@ -19,7 +19,19 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import cybersoft.javabackend.java12.gira.common.entity.BaseEntity;
 import cybersoft.javabackend.java12.gira.role.entity.Group;
 import cybersoft.javabackend.java12.gira.user.util.UserStatus;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString(exclude = {"groups"})
+@EqualsAndHashCode(exclude = {"groups"}, callSuper = false)
 @Entity
 @Table(name = "gira_user")
 public class User extends BaseEntity {
@@ -30,7 +42,6 @@ public class User extends BaseEntity {
 	private String username;
 
 	@NotNull
-//	@Size(min = 8)
 	private String password;
 
 	@NotNull
@@ -57,104 +68,11 @@ public class User extends BaseEntity {
 
 	private String hobby;
 
+	@Builder.Default
 	@ManyToMany(mappedBy = "users", fetch = FetchType.LAZY)
 	@JsonIgnore
 	private Set<Group> groups = new HashSet<>();
 
-	public String getUsername() {
-		return username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public String getFullname() {
-		return fullname;
-	}
-
-	public String getDisplayName() {
-		return displayName;
-	}
-
-	public String getAvatar() {
-		return avatar;
-	}
-
-	public UserStatus getStatus() {
-		return status;
-	}
-
-	public String getLinkFaceBook() {
-		return linkFaceBook;
-	}
-
-	public String getJob() {
-		return job;
-	}
-
-	public String getDepartment() {
-		return department;
-	}
-
-	public String getHobby() {
-		return hobby;
-	}
-
-	public Set<Group> getGroups() {
-		return groups;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public void setFullname(String fullname) {
-		this.fullname = fullname;
-	}
-
-	public void setDisplayName(String displayName) {
-		this.displayName = displayName;
-	}
-
-	public void setAvatar(String avatar) {
-		this.avatar = avatar;
-	}
-
-	public void setStatus(UserStatus status) {
-		this.status = status;
-	}
-
-	public void setLinkFaceBook(String linkFaceBook) {
-		this.linkFaceBook = linkFaceBook;
-	}
-
-	public void setJob(String job) {
-		this.job = job;
-	}
-
-	public void setDepartment(String department) {
-		this.department = department;
-	}
-
-	public void setHobby(String hobby) {
-		this.hobby = hobby;
-	}
-
-	public void setGroups(Set<Group> groups) {
-		this.groups = groups;
-	}
+	
 
 }
